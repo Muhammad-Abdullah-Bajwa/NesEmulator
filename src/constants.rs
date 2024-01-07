@@ -3,13 +3,29 @@ use std::vec;
 use crate::operation::{AddressingModes, Operation};
 use lazy_static::lazy_static;
 
+pub mod BitMasks {
+    pub const ZERO: u8 = 0b00000001;
+    pub const FIRST: u8 = 0b00000010;
+    pub const SECOND: u8 = 0b00000100;
+    pub const THIRD: u8 = 0b00001000;
+    pub const FOURTH: u8 = 0b00010000;
+    pub const FIFTH: u8 = 0b00100000;
+    pub const SIXTH: u8 = 0b01000000;
+    pub const SEVENTH: u8 = 0b10000000;
+}
+
 pub const RESET_STACK_ADDRESS: u8 = 0xFD;
 pub const STATUS_REGISTER_INITIAL: u8 = 0b00100100;
+pub const STACK_START: u16 = 0x100;
 pub const RAM_START: u16 = 0x0000;
 pub const RAM_MIRRORS_END: u16 = 0x1FFF;
 pub const PPU_REGISTERS: u16 = 0x2000;
 pub const PPU_REGISTERS_MIRRORS_END: u16 = 0x3FFF;
 pub const RAM_SIZE: u16 = 2048;
+pub const IRQ_INTERRUPT_VECTOR_ADDRESS: u16 = 0xFFFE;
+pub const U16_HIGH_BYTE_MASK: u16 = 0xFF00;
+pub const U16_LOW_BYTE_MASK: u16 = 0x00FF;
+pub const RESET_PROGRAM_COUNTER_ADDRESS: u16 = 0xFFFC;
 
 lazy_static! {
     pub static ref OPERATION_INFORMATION: Vec<Option<Operation>> = {
